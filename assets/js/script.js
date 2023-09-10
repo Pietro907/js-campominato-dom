@@ -13,12 +13,13 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 */
 
 const fieldElement = document.querySelector(".field");
+console.log(fieldElement);
 const generateGrid = document.getElementById("genera_grid");
 const resetGrid = document.getElementById("reset_grid");
 const limit = 100;
 const listBombs = [];
-const minesToGenerate = 16;  
-const fieldSize = document.getElementById("fieldSize");
+const minesToGenerate = 16;
+
 
 
 /**
@@ -32,14 +33,12 @@ function generateMineField(Element, limit) {
     for (let i = 0; i < limit; i++) {
 
         const cellElement = document.createElement('div');
-        const cellValue = i + 1; // lo posso fare anche cambiando i in i = 1 nel ciclo for;
+        const cellValue = i + 1;; // lo posso fare anche cambiando i in i = 1 nel ciclo for;
         cellElement.classList.add('cell');
         //fieldElement.style.width = `calc (100% / ${Math.sqrt(limit)})` per rendere omegenea la tabella ma non funziona, manca il form>button 'play'???
+        
         Element.append(cellElement);
         cellElement.innerHTML = cellValue;
-        
-
-
 
         //l'addEventListener viene associato a ogni cella ogni volta che viene creata durante il ciclo e rimane in attesa.
         cellElement.addEventListener("click", function generateBombs(bombs) {
@@ -48,54 +47,17 @@ function generateMineField(Element, limit) {
             console.log(cellValue);
             //cellElement.innerHTML = cellValue; //stampa il valore numerico della cella al click
 
-            
-            /*if (bombs == cellValue) {
-                listBombs.push(bombs);
-                this.classList.toogle('color_red');
-                cellElement.innerHTML = cellValue;
-            } else {
-                
-            } 
-             */
         }
         )
-        
+
 
     }
-
     
 };
 
-//Genera 16 mine casuali //Utilizziamo il while che a differenza del for se il numero generato è presente dentro la lista va avanti e non pusha...il for pusha all'infinito!
-        
-const bombsList = [];
-
-while (bombsList.length < 16) {
-
-    const numberRandom = Math.floor(Math.random() * 100)
-
-    console.log(numberRandom);
-    bombsList.push(numberRandom);
-}
-console.log(bombsList);
-
-
-
-
-
-//Funzione per rimuovere le mine
-function removeMineField(limit) {
-
-    //console.log("removing cells");
-
-
-    fieldElement.remove('cell'); 
-
-}
 
 //Genera griglia
 generateGrid.addEventListener("click", function () {
-
 
     generateGrid.classList.toggle("active");
     generateMineField(fieldElement, limit);
@@ -133,46 +95,32 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
  */
 
 
+//Genera 16 mine casuali 
+function generateMine(ev) {
 
-
-
-
-
-
-
-
-function generateMines(minesNumber, limit) {
-    const minesList = [];
-
-    /*  With For Loop
-
-    for (let i = 0; minesList.length < minesNumber; i++) {
+    //Creo una lista
+    const bombsList = [];
     
-            let mine = Math.floor(Math.random() * limit) + 1;
-    
-            if (!minesList.includes(mine)) {
-                minesList.push(mine);
-            }
-    
+    //Utilizziamo il while che a differenza del for se il numero generato è presente dentro la lista va avanti e non pusha...il for pusha all'infinito!
+    //Creo una listantrolla se in tutta la lunghezza/posizioni dell'array è presente un determinato numero
+    while (bombsList.length < 16) {
+        //Genero il numero random
+        const numberRandom = Math.floor(Math.random() * 100)
+        //Se non/(!) include bombsList il numero random pushalo dentro 
+        if (!bombsList.includes(numberRandom)) {
+            //console.log(numberRandom);
+            bombsList.push(numberRandom);
         }
-    
-    */
-    //Finche l'array lista di mine è inferiore del numero di mine
-    while (minesList.length < minesNumber) {
-
-        //genera un numero casuale tra 1 e il numero massimo d celle
-        let mine = Math.floor(Math.random() * limit) + 1;
-
-        //se questo valore non è incluso nell'array minesList, viene pushato dentro
-        if (!minesList.includes(mine)) {
-
-            minesList.push(mine);
-
-        }
-
+        
     }
-
-    console.log("Mines =", minesList);
-    return minesList;
-
+    console.log(bombsList);
+    return bombsList
 }
+
+/*     //Con il metodo .sort(e la funzione all'interno delle parentesi) ordino in crescente i numeri della lista  
+    bombsList.sort(function (a, b) { return a - b });
+    console.log(bombsList);
+
+    while (bombsList.sort(function (a, b) { return a - b }) == numberRandom) {
+        console.log('BOMBS');
+    } */
