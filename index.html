@@ -1,23 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Campo Minato Grid</title>
-	<link rel='stylesheet' href='./assets/css/style.css'>
-</head>
-<body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campo Minato Grid</title>
 
-	
-	<form>
-		<button type="submit">Play</button>
-	</form>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous">
 
-	<div class="container">
-		<div class="field">
-            
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+    </head>
+    <body>
+
+        <div class="container mt-4">
+            <div class="card">
+
+                <div class="card-header text-center fw-bold h3">
+                    Campo Minato!
+                </div>
+
+                <div class="card-body">
+                    <div class="d-flex justify-content-center my-1">
+
+                        <button id="genera_grid" class="btn btn-success">Griglia</button>
+
+                        <button id="reset_grid" class="btn btn-danger">Reset Griglia</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="field mt-5 m-auto">
+
+            </div>
         </div>
-	</div>
 
-
-	<script src='./assets/js/script.js'></script>
-</body>
+        <script src="./assets/js/script.js"></script>
+    </body>
 </html>

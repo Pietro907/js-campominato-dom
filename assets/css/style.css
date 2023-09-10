@@ -1,33 +1,28 @@
-body
-{
-	background: #000;
-}
-
-*
-{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-.container
-{
+body {
+	background: #000;
+}
+
+
+.container {
 	max-width: 800px;
 	margin: 2rem auto;
 }
 
-.bg-green
-{
+.bg-green {
 	background-color: palegreen;
 }
 
-.field
-{
+.field {
 	display: flex;
 	flex-wrap: wrap;
 
-	& .cell
-	{
+	& .cell {
 		width: calc(100% / 10);
 		aspect-ratio: 1 / 1;
 		border: 1px solid white;
@@ -39,15 +34,22 @@ body
 	}
 
 }
+
 .col {
 	border: 1px dashed red;
 	width: 80px;
 	height: 80px;
 }
+
 .card {
 	border: 1px dashed greenyellow;
 }
+
 h3 {
 	text-align: center;
 	line-height: 80px;
+}
+
+.color_green {
+	background-color: greenyellow;
 }
