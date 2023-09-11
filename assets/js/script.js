@@ -36,12 +36,12 @@ function generateMineField(Element, limit) {
         const cellValue = i + 1;; // lo posso fare anche cambiando i in i = 1 nel ciclo for;
         cellElement.classList.add('cell');
         //fieldElement.style.width = `calc (100% / ${Math.sqrt(limit)})` per rendere omegenea la tabella ma non funziona, manca il form>button 'play'???
-        
+
         Element.append(cellElement);
         cellElement.innerHTML = cellValue;
 
         //l'addEventListener viene associato a ogni cella ogni volta che viene creata durante il ciclo e rimane in attesa.
-        cellElement.addEventListener("click", function generateBombs(bombs) {
+        cellElement.addEventListener("click", function generateBombs() {
             //console.log(this); //log se il click funziona
             this.classList.toggle("color_green"); //mi fa spegnere ed accendere la cella con la classe .color_green
             console.log(cellValue);
@@ -52,21 +52,19 @@ function generateMineField(Element, limit) {
 
 
     }
-    
+
 };
 
 
 //Genera griglia
 generateGrid.addEventListener("click", function () {
 
+
     generateGrid.classList.toggle("active");
+
     generateMineField(fieldElement, limit);
 
-    /*     if (generateGrid.classList.contains("active")) {
-    
-    
-    
-        } */
+
 });
 
 //Reset griglia
@@ -96,11 +94,11 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 
 //Genera 16 mine casuali 
-function generateMine(ev) {
+function generateMine() {
 
     //Creo una lista
     const bombsList = [];
-    
+
     //Utilizziamo il while che a differenza del for se il numero generato è presente dentro la lista va avanti e non pusha...il for pusha all'infinito!
     //Creo una listantrolla se in tutta la lunghezza/posizioni dell'array è presente un determinato numero
     while (bombsList.length < 16) {
@@ -111,11 +109,101 @@ function generateMine(ev) {
             //console.log(numberRandom);
             bombsList.push(numberRandom);
         }
-        
+
     }
     console.log(bombsList);
     return bombsList
 }
+
+
+//Creo una variabile con tutte i div
+const allCells = document.querySelectorAll('div');//Creo una variabile con tutte i div
+
+//Creo una variabile con tutte i div
+const bombs = generateMine();
+
+function startGame(S) {
+    allCells;
+    console.log(allCells);
+
+    bombs;
+    // attach an event on click on every cell
+    for (let index = 0; index < allCells.length; index++) {
+
+        const cellsList = allCells[index];
+
+        function handleClick() {
+            console.log(this);
+
+            // make sure the inner cell text is a number
+
+
+            if (bombs.includes(Number(this.innerText))) {
+                console.log('bomb');
+                this.innerText = '💣'
+                this.style.backgroundColor = 'red';
+                // Game over
+                gameOver(attempts)
+
+            } else {
+                console.log('safe');
+                // option 2
+                attempts++
+
+                this.classList.toggle('color_green')
+
+                // option 1
+                this.classList.add('color_red')
+
+                if (attempts === level - 16) {
+                    gameOver(bombs, 'you win!', attempts)
+                }
+
+
+
+            }
+        }
+
+
+    }
+
+}
+
+
+/* function gameOver(bombs) {
+
+    const cells = document.querySelectorAll('div')
+
+    for (let index = 0; index < cells.length; index++) {
+        const cellDomEl = cells[index];
+        console.log(cellDomEl);
+
+        if (bombs.includes(Number(cellDomEl))) {
+            //console.log('ciaoooooo');
+            cellDomEl.style.backgroundColor = 'red';
+            this.innerHTML = 'BOOM'
+        } else {
+            console.log('ciaoooooo');
+            this.classList.add('color_red');
+        }
+    }
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*     //Con il metodo .sort(e la funzione all'interno delle parentesi) ordino in crescente i numeri della lista  
     bombsList.sort(function (a, b) { return a - b });
